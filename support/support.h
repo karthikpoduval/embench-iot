@@ -20,6 +20,7 @@
 #endif
 
 /* Include board support header if we have one */
+#define CPU_MHZ (1500)
 
 #ifdef HAVE_BOARDSUPPORT_H
 #include "boardsupport.h"

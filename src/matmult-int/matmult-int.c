@@ -261,6 +261,11 @@ verify_benchmark (int unused)
 
 /* vim: set ts=3 sw=3 et: */
 
+int main()
+{
+	benchmark_body(10000);
+}
+
 
 /*
    Local Variables:

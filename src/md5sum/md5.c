@@ -83,7 +83,7 @@ void md5(uint8_t *initial_msg, size_t initial_len) {
 
     int new_len = ((((initial_len + 8) / 64) + 1) * 64) - 8;
 
-    msg = calloc_beebs(new_len + 64, 1); // also appends "0" bits
+    msg = calloc(new_len + 64, 1); // also appends "0" bits
                                    // (we alloc also 64 extra bytes...)
     memcpy(msg, initial_msg, initial_len);
     msg[initial_len] = 128; // write the "1" bit
@@ -173,7 +173,7 @@ void md5(uint8_t *initial_msg, size_t initial_len) {
     }
 
     // cleanup
-    free_beebs(msg);
+    free(msg);
 }
 
 
@@ -207,14 +207,14 @@ benchmark_body (int rpt, int len)
   int i, j;
 
   for (j = 0; j < rpt; j++) {
-    init_heap_beebs ((void *) heap, HEAP_SIZE);
+    init_heap ((void *) heap, HEAP_SIZE);
 
-    uint8_t *msg = malloc_beebs(len);
+    uint8_t *msg = malloc(len);
     for (i = 0; i < len; i++){
       msg[i] = i;
     }
     md5(msg, len);
-    free_beebs(msg);
+    free(msg);
 
     uint8_t *p;
     // display result
@@ -242,4 +242,10 @@ verify_benchmark (int r)
 {
   // This isn't a proper check...
   return r == RESULT;
+}
+
+int main()
+{
+
+	benchmark_body(10000, 10000);
 }

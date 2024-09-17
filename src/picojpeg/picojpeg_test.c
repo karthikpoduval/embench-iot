@@ -205,6 +205,11 @@ benchmark_body (int rpt)
   return 0;
 }
 
+int main()
+{
+	benchmark_body(10000);
+}
+
 
 /*
    Local Variables:
